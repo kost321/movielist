@@ -1,0 +1,32 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+    justify-content: space-around;
+    height: 140px;
+}
+
+
+.text {
+    margin: 1em;
+    border: solid;
+}
+
+.text:empty:before {
+    content: attr(data-placeholder);
+    color: gray
+}
+
+
+.input {
+    width: 100px;
+}
+
+.btn {
+    width: 50px;
+}
+
+.block__field {
+    display: flex;
+    justify-content: space-around;
+}
