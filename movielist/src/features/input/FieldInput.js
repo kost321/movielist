@@ -17,7 +17,6 @@ export function FieldInput() {
       <div className="container">
         <div
           className="text"
-          contenteditable="false"
           data-placeholder="input field"
         >
           {field}
