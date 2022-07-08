@@ -1,24 +1,21 @@
-import React, { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { add, clear, selectInput, addSomeText } from "./inputSlice";
-import "./input.css";
+import React, { useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { add, clear, selectInput, addSomeText } from './inputSlice';
+import './input.css';
 
 export function FieldInput() {
   const field = useSelector(selectInput);
   const dispatch = useDispatch();
-  const [addText, setaddText] = useState("");
+  const [addText, setaddText] = useState('');
 
   const handleChange = () => {
-    setaddText("");
+    setaddText('');
   };
 
   return (
     <div>
       <div className="container">
-        <div
-          className="text"
-          data-placeholder="input field"
-        >
+        <div className="text" data-placeholder="input field">
           {field}
         </div>
         <button

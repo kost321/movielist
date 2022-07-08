@@ -1,19 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
-  value: "",
-  status: "idle",
+  value: ''
 };
 
 export const counterSlice = createSlice({
-  name: "input",
+  name: 'input',
   initialState,
   reducers: {
     add: (state) => {
-      state.value += "!";
+      state.value += '!';
     },
     clear: (state) => {
-      state.value = "";
+      state.value = '';
     },
     addSomeText: (state, action) => {
       state.value += action.payload;
