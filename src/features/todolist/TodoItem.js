@@ -1,8 +1,16 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import { toogleCompleted, deleteTodo } from "./TodoSclice";
+import { toogleCompleted, deleteTodo, changeTodo } from "./TodoSclice";
+import { useState } from "react";
+import "./todolist.css"
 
 export function  TodoItem ({ id, title, completed }) {
+  const [value, setValue] = useState(title);
+
+  const handleChangeClick = () => {
+    dispatch(changeTodo({ title: title }))
+  }
+
   const dispatch = useDispatch();
 
   const handleCompleteClick = () => {
@@ -12,19 +20,20 @@ export function  TodoItem ({ id, title, completed }) {
   const handleDeleteClick = () => {
     dispatch(deleteTodo({ id: id }));
   };
+
   return (
-    <li className={`list-group-item ${completed && "list-group-item-success"}`}>
+    <li>
       <div>
-        <span>
+        <span >
           <input
             id="cbox"
             type="checkbox"
             checked={completed}
             onChange={handleCompleteClick}
           ></input> 
-          {title}
+         <input defaultValue={title} onClick={handleChangeClick} className={`list-group-item ${completed && "list-group-item-success"}`}/>
         </span>
-        <button onClick={handleDeleteClick}>Delete</button>
+        <button onChange={handleDeleteClick}>Delete</button>
       </div>
     </li>
   );

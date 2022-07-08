@@ -6,9 +6,9 @@ export function TodoList() {
   const todos = useSelector((state) => state.todos);
 
   return (
-    <ul>
+    <ul >
       {todos.map((todo) => (
-        <TodoItem id={todo.id} title={todo.title} completed={todo.completed} />
+        <TodoItem key={todo.id} id={todo.id} title={todo.title} completed={todo.completed} />
       ))}
     </ul>
   );
