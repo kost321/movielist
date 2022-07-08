@@ -2,8 +2,8 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   value: "",
-  status: "idle",
 };
+
 
 export const counterSlice = createSlice({
   name: "input",
