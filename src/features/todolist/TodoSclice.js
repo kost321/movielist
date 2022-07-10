@@ -23,7 +23,8 @@ export const counterSlice = createSlice({
     state.splice(index,1);
     },
     changeTodo: (state, action) => {
-      state.title = action.payload.title
+      const index = state.findIndex((todo) => todo.id === action.payload.id);
+      state[index].title += action.payload.title;
     }
   },
 });
