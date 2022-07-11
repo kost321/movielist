@@ -10,7 +10,7 @@ export function AddTodoForm() {
 
   const onSubmit = (event) => {
     event.preventDefault();
-    setValue("")
+    setValue("");
     dispatch(
       addTodos({
         title: value,
@@ -20,18 +20,17 @@ export function AddTodoForm() {
 
   return (
     <>
-    <form onSubmit={onSubmit}>
-      <input
-        type="text"
-        placeholder="Add todo..."
-        value={value}
-        onChange={(event) => setValue(event.target.value)}
-      ></input>
-      <button type="submit">Submit</button>
-    </form>
-    <TodoList />
+      <form onSubmit={onSubmit}>
+        <input
+          type="text"
+          placeholder="Add todo..."
+          value={value}
+          onChange={(event) => setValue(event.target.value)}
+        ></input>
+        <button type="submit">Submit</button>
+      </form>
+      <TodoList />
     </>
-    
   );
 }
 

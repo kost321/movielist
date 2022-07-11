@@ -6,19 +6,16 @@ import "./input.css";
 export function FieldInput() {
   const field = useSelector(selectInput);
   const dispatch = useDispatch();
-  const [addText, setaddText] = useState("");
+  const [addText, setAddText] = useState("");
 
   const handleChange = () => {
-    setaddText("");
+    setAddText("");
   };
 
   return (
     <div>
       <div className="container">
-        <div
-          className="text"
-          data-placeholder="input field"
-        >
+        <div className="text" data-placeholder="input field">
           {field}
         </div>
         <button
@@ -43,7 +40,7 @@ export function FieldInput() {
           aria-label="Set increment amount"
           value={addText}
           onChange={(e) => {
-            setaddText(e.target.value);
+            setAddText(e.target.value);
           }}
         />
         <button

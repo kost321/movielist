@@ -4,7 +4,6 @@ const initialState = {
   value: "",
 };
 
-
 export const counterSlice = createSlice({
   name: "input",
   initialState,

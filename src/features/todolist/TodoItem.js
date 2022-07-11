@@ -6,8 +6,8 @@ import "./todolist.css";
 import { useEffect, useRef } from "react";
 
 export function TodoItem({ id, title, completed }) {
-  const [changeState, setChangeState] = useState(title)
-  const [showMe, setShowMe] = useState(true);
+  const [changeState, setChangeState] = useState(title);
+  const [edditDiv, setEdditDiv] = useState(true);
 
   const dispatch = useDispatch();
 
@@ -15,33 +15,29 @@ export function TodoItem({ id, title, completed }) {
     dispatch(toogleCompleted({ id: id, completed: !completed }));
   };
 
-
   const handleDeleteClick = () => {
     dispatch(deleteTodo({ id: id }));
   };
 
   const ref = useRef();
 
-
-  const handleClickOutside = e => {
+  const handleClickOutside = (e) => {
     if (ref.current && !ref.current.contains(e.target)) {
-      setShowMe(true);
-      dispatch(changeTodo({changeState,id: id}))
+      setEdditDiv(true);
+      e.preventDefault();
+      dispatch(changeTodo({ title: changeState, id: id }));
     }
   };
-  console.log("changestate",changeState)
 
-  const handleClickInside = () => setShowMe(false);
+  const handleClickInside = () => setEdditDiv(false);
 
- useEffect(() => {
-    document.addEventListener("mousedown", handleClickOutside); 
+  useEffect(() => {
+    document.addEventListener("mousedown", handleClickOutside);
     return () => document.removeEventListener("mousedown", handleClickOutside);
-  },[]);
-  
+  });
 
   let inputChange;
- 
-  if (showMe) {
+  if (edditDiv) {
     inputChange = (
       <div
         onClick={handleClickInside}
@@ -54,16 +50,13 @@ export function TodoItem({ id, title, completed }) {
     inputChange = (
       <input
         ref={ref}
-        onChange={(event) => setChangeState(event.target.value)}
+        onChange={(e) => setChangeState(e.target.value)}
         value={changeState}
         className={`list-group-item ${completed && "list-group-item-success"}`}
       />
     );
   }
-  console.log("showme", showMe);
 
- 
-  console.log("changestate",changeState)
   return (
     <li>
       <div>

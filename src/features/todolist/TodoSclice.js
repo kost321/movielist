@@ -24,7 +24,7 @@ export const counterSlice = createSlice({
     },
     changeTodo: (state, action) => {
       const index = state.findIndex((todo) => todo.id === action.payload.id);
-      state[index].title += action.payload.title;
+      state[index].title = action.payload.title;
     }
   },
 });
