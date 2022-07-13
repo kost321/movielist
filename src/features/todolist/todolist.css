@@ -1,9 +1,10 @@
 .container__todo {
-    display: flex;
-    margin-top: 20px;
-    height: 100%;
-    flex-direction: column;
+  display: flex;
+  margin-top: 20px;
+  height: 100%;
+  flex-direction: column;
 }
-.list-group-item-success{
+
+.list-group-item-success {
   text-decoration: line-through;
 }
