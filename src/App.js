@@ -4,6 +4,7 @@ import { Counter } from "./features/counter/Counter";
 import "./App.css";
 import { FieldInput } from "./features/input/FieldInput";
 import { AddTodoForm } from "./features/todolist/AddTodoForm";
+import { AddFilmList } from "./film/movieList/components/movieList/MovieLsit"
 
 function App() {
   return (
@@ -12,6 +13,7 @@ function App() {
         <Counter />
         <FieldInput />
         <AddTodoForm />
+        <AddFilmList/>
       </header>
     </div>
   );
