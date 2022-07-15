@@ -1,0 +1,32 @@
+.container__movie-list {
+    width: 1300px;
+    flex-wrap: wrap;
+    display: flex;
+    margin: 0 auto;
+    justify-content: center;
+}
+
+.block__movie-list {
+    width: 300px;
+    margin-right: 50px;
+}
+
+.movie_img {
+    width: 300px;
+}
+
+.img__icone {
+    position: static;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-left: 20px;
+}
+
+.editWindow {
+    width: 100px;
+    height: 100px;
+    background-color: rgb(255, 255, 255);
+    z-index: 2;
+    position: relative;
+}
