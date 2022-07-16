@@ -1,11 +1,14 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import { getPostsFromServer,getPostsFromServerFilter } from "./GetMovieListAPI";
+import { getPostsFromServer,getPostsFromServerFilter, getPostsFromServerSort } from "./GetMovieListAPI";
+
+
 
 const initialState = {
   posts: [],
   loading: false,
   currentFilter: "",
-  currentSort: "asc"
+  currentSort: "",
+  currentCountMovie: 0 
 };
 
 export const getPosts = createAsyncThunk("posts/getPosts", async () => {
@@ -14,12 +17,29 @@ export const getPosts = createAsyncThunk("posts/getPosts", async () => {
 });
 
 export const movieFilter = createAsyncThunk("posts/movieFilter", async (filter,{dispatch}) => {
-  // создать новую синхр функцию , вызвать в ней состояние текущего стейта и передать в параметры для функции 
   const posts = await getPostsFromServerFilter(filter);
-  posts.sort(x => x.date);
   dispatch(setCurrentFilter(filter));
   return posts;
 });
+
+export const movieSort= createAsyncThunk("posts/movieFilter", async (typeOrder, {dispatch, getState}) => {
+  const currentState = getState();
+  const currentFilter = currentState.movie.currentFilter;
+  const sortMovie = await getPostsFromServerSort(typeOrder, currentFilter);
+  dispatch(setSort(typeOrder));
+  return sortMovie;
+});
+
+export const movieSearch= createAsyncThunk("posts/movieFilter", async (typeOrder, {dispatch, getState}) => {
+  const currentState = getState();
+  const currentFilter = currentState.movie.currentFilter;
+  const sortMovie = await getPostsFromServerSort(typeOrder, currentFilter);
+  dispatch(setSort(typeOrder));
+  return sortMovie;
+});
+
+
+
 
 
 export const movieSlice = createSlice({
@@ -29,6 +49,9 @@ export const movieSlice = createSlice({
     setCurrentFilter: (state, action) => {
       state.currentFilter = action.payload
     },
+    setSort: (state,action) => {
+      state.currentSort = action.payload
+    }
   },
   extraReducers: {
     [getPosts.pending]: (state) => {
@@ -37,6 +60,7 @@ export const movieSlice = createSlice({
     [getPosts.fulfilled]: (state, action) => {
       state.loading = false;
       state.posts = action.payload;
+      state.currentCountMovie = action.payload.length
     },
     [getPosts.rejected]: (state) => {
       state.loading = false;
@@ -44,10 +68,16 @@ export const movieSlice = createSlice({
     [movieFilter.fulfilled]: (state, action) => {
       state.loading = false;
       state.posts = action.payload;
+      state.currentCountMovie = action.payload.length
+    },
+    [movieSort.fulfilled]: (state, action) => {
+      state.loading = false;
+      state.posts = action.payload;
+      state.currentCountMovie = action.payload.length
     },
   },
 });
 
-export const { setCurrentFilter} = movieSlice.actions;
+export const { setCurrentFilter,setSort} = movieSlice.actions;
 
 export default movieSlice.reducer;

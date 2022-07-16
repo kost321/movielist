@@ -1,24 +1,22 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import "./movielist.css";
-import imgMenu from "./media/menu-svgrepo-com.svg";
 import { getPosts } from "../../redux/MovieListSlice";
 import { Filters } from "../filters/Filters";
 
 export const AddFilmList = () => {
   const { posts } = useSelector((state) => state.movie);
+  const countMovies = useSelector((state) => state.movie.currentCountMovie);
 
-  console.log( "post",posts);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getPosts());
   }, []);
 
-
-console.log(posts)
   return (
     <div className="container__movie">
       <Filters />
+      {countMovies}
       <div></div>
       <section className="container__movie-list">
         {posts.map((post) => (

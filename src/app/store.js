@@ -6,9 +6,9 @@ import movieReducer from "../film/movieList/redux/MovieListSlice"
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
-    input: fieldReducer,
-    todos: todosReducer,
+    // counter: counterReducer,
+    // input: fieldReducer,
+    // todos: todosReducer,
     movie: movieReducer
   },
 });
