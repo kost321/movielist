@@ -26,7 +26,6 @@ export const Filters = () => {
         <button onClick={() => dispatch(movieFilter(""))} className="btnAsync">
           ALL
         </button>
-
         <button
           onClick={() => dispatch(movieFilter("Fantasy"))}
           className={`btnAsync ${
@@ -85,7 +84,7 @@ export const Filters = () => {
         </button>
       </div>
       <div>
-        SORT BY
+        SORT BY RELEASE DATE
         <button
           onClick={changeBtnAsc}
           className = {btnAsc === true ? `btnAsyncComplit` : `btnAsync`}
@@ -103,4 +102,3 @@ export const Filters = () => {
   );
 };
 
-export default Filters;
