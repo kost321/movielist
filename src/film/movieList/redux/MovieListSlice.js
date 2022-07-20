@@ -7,6 +7,7 @@ import {
   getPostFromServerById,
   deletePostsFromServer,
   editPostFromServer,
+  addPostFromServer,
 } from "./GetMovieListAPI";
 
 const initialState = {
@@ -43,6 +44,14 @@ export const editPost = createAsyncThunk(
   "posts/editPost",
   async (paramDispatch) => {
     const searchMovie = await editPostFromServer(paramDispatch);
+    return searchMovie;
+  }
+);
+
+export const addPost = createAsyncThunk(
+  "posts/editPost",
+  async (paramDispatch) => {
+    const searchMovie = await addPostFromServer(paramDispatch);
     return searchMovie;
   }
 );
@@ -148,6 +157,9 @@ export const movieSlice = createSlice({
         (item) => item.id === action.payload.id
       );
       state.posts[index] = action.payload;
+    },
+    [addPost.fulfilled]: (state, action) => {
+      state.posts.push(action.payload);
     },
   },
 });

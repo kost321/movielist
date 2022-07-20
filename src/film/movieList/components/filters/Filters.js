@@ -14,70 +14,81 @@ export const Filters = () => {
     setBtnAsc(!btnAsc);
     dispatch(movieSort("asc"));
   };
-  
+
   const changeBtnDesc = () => {
     setBtnDesc(!btnDesc);
     dispatch(movieSort("desc"));
   };
 
   return (
-    <div className="container__filters">
+    <div className="container__filter">
       <div>
-        <button onClick={() => dispatch(movieFilter(""))} className="btnAsync">
+        <button
+          onClick={() => dispatch(movieFilter(""))}
+          className="btn__async"
+        >
           ALL
         </button>
         <button
           onClick={() => dispatch(movieFilter("Fantasy"))}
-          className={`btnAsync ${
-            currentFilter === "Fantasy" && "btnAsyncComplit"
+          className={`btn__async ${
+            currentFilter === "Fantasy" && "btn__async-complete"
           }`}
         >
           FANTASY
         </button>
         <button
           onClick={() => dispatch(movieFilter("Adventure"))}
-          className={`btnAsync ${
-            currentFilter === "Adventure" && "btnAsyncComplit"
+          className={`btn__async ${
+            currentFilter === "Adventure" && "btn__async-complete"
           }`}
         >
           ADVENTURE
         </button>
         <button
           onClick={() => dispatch(movieFilter("Family"))}
-          className={`btnAsync ${
-            currentFilter === "Family" && "btnAsyncComplit"
+          className={`btn__async ${
+            currentFilter === "Family" && "btn__async-complete"
           }`}
         >
           FAMILY
         </button>
         <button
+          onClick={() => dispatch(movieFilter("COMEDY"))}
+          className={`btn__async ${
+            currentFilter === "COMEDY" && "btn__async-complete"
+          }`}
+        >
+          COMEDY
+        </button>
+        <button
           onClick={() => dispatch(movieFilter("Thriller"))}
-          className={`btnAsync ${
-            currentFilter === "Thriller" && "btnAsyncComplit"
+          className={`btn__async ${
+            currentFilter === "Thriller" && "btn__async-complete"
           }`}
         >
           THRILLER
         </button>
         <button
           onClick={() => dispatch(movieFilter("Drama"))}
-          className={`btnAsync ${
-            currentFilter === "Drama" && "btnAsyncComplit"
+          className={`btn__async ${
+            currentFilter === "Drama" && "btn__async-complete"
           }`}
         >
           DRAMA
         </button>
         <button
           onClick={() => dispatch(movieFilter("Documentary"))}
-          className={`btnAsync ${
-            currentFilter === "Documentary" && "btnAsyncComplit"
+          className={`btn__async ${
+            currentFilter === "Documentary" && "btn__async-complete"
           }`}
         >
           DOCUMENTARY
         </button>
         <button
           onClick={() => dispatch(movieFilter("Horror"))}
-          className={`btnAsync ${
-            currentFilter === "Horror" && "btnAsyncComplit"
+          className={`btn__async ${
+            currentFilter === "Horror" && "btn__async-complete"
           }`}
         >
           HORROR
@@ -87,13 +98,13 @@ export const Filters = () => {
         SORT BY RELEASE DATE
         <button
           onClick={changeBtnAsc}
-          className = {btnAsc === true ? `btnAsyncComplit` : `btnAsync`}
+          className={btnAsc === true ? `btn__async-complete` : `btn__async`}
         >
           ASC
         </button>
         <button
           onClick={changeBtnDesc}
-          className = {btnDesc === true ? `btnAsyncComplit` : `btnAsync`}
+          className={btnDesc === true ? `btn__async-complete` : `btn__async`}
         >
           DESC
         </button>
@@ -101,4 +112,3 @@ export const Filters = () => {
     </div>
   );
 };
-

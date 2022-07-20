@@ -1,9 +1,7 @@
 import React from "react";
-import "./editWindow.css";
-import { useSelector } from "react-redux";
+import "./header.css";
 
-export const EditWindow = ({
-  id,
+export const AddPost = ({
   valueTitle,
   setValueTitle,
   valueRelease,
@@ -13,28 +11,21 @@ export const EditWindow = ({
   valueOverview,
   setValueOverview,
   valueRuntime,
-  seValueRuntime,
+  setValueRuntime,
   onSubmit,
   valueGenres,
-  seValueGenres,
+  setValueGenres,
 }) => {
-  const movieState = useSelector((state) => state.movie.posts);
-  let currentMovieState = movieState.find((item) => item.id === id);
-  console.log(movieState);
   return (
     <div className="container__input">
       <div className="block__input">
-        <button className="btn__close-modal">BACK</button>
-        <div className="current-block__input">
-          MOVIE ID
-          <div>{currentMovieState.id}</div>
-        </div>
+        <button className="btn__add__close-modal">BACK</button>
+
         <div className="current-block__input">
           TITILE
           <input
             type="text"
             value={valueTitle}
-            placeholder={currentMovieState.title}
             onChange={(event) => setValueTitle(event.target.value)}
           />
         </div>
@@ -43,7 +34,6 @@ export const EditWindow = ({
           <input
             type="text"
             value={valueRelease}
-            placeholder={currentMovieState.release_date}
             onChange={(event) => setValueRelease(event.target.value)}
           />
         </div>
@@ -52,7 +42,6 @@ export const EditWindow = ({
           <input
             type="text"
             value={valueUrl}
-            placeholder={currentMovieState.poster_path}
             onChange={(event) => setValueUrl(event.target.value)}
           />
         </div>
@@ -61,7 +50,6 @@ export const EditWindow = ({
           <input
             type="text"
             value={valueOverview}
-            placeholder={currentMovieState.overview}
             onChange={(event) => setValueOverview(event.target.value)}
           />
         </div>
@@ -70,8 +58,7 @@ export const EditWindow = ({
           <input
             type="text"
             value={valueRuntime}
-            placeholder={currentMovieState.runtime}
-            onChange={(event) => seValueRuntime(event.target.value)}
+            onChange={(event) => setValueRuntime(event.target.value)}
           />
         </div>
         <div className="current-block__input">
@@ -79,11 +66,10 @@ export const EditWindow = ({
           <input
             type="text"
             value={valueGenres}
-            placeholder={currentMovieState.genres}
-            onChange={(event) => seValueGenres(event.target.value)}
+            onChange={(event) => setValueGenres(event.target.value)}
           />
         </div>
-        <button className="btn__on-submit" onSubmit={onSubmit}>
+        <button className="btn__add__on-submit" onSubmit={onSubmit}>
           SAVE
         </button>
       </div>

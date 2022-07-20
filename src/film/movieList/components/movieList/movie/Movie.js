@@ -1,6 +1,6 @@
-import React, { useEffect, useState } from "react";
-import {  useDispatch } from "react-redux";
-import {  currentMovie } from "../../../redux/MovieListSlice";
+import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+import { currentMovie } from "../../../redux/MovieListSlice";
 import { useNavigate } from "react-router-dom";
 import { ModalWindow } from "../ModalWindow/ModalWindow";
 
@@ -40,7 +40,7 @@ export const Movie = ({ id, title, img, genres, date }) => {
           {modalWindow ? <ModalWindow id={id} /> : null}
         </div>
         <div>{title}</div>
-        <div>{genres}</div>
+        <div>{genres.join(", ")}</div>
         <div>{date}</div>
       </article>
     </div>

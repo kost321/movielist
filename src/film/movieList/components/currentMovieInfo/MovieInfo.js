@@ -1,6 +1,6 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { getPosts, movieFilter } from "../../redux/MovieListSlice";
+import { getPosts } from "../../redux/MovieListSlice";
 import { useNavigate } from "react-router-dom";
 import "./movieInfo.css";
 
@@ -17,7 +17,7 @@ export const MovieInfo = () => {
   return (
     <div>
       <button onClick={handleClick}>BACK</button>
-      <div className="container__info-movie">
+      <div className="container__movie-info">
         <img className="movie_img" src={currentFilm.poster_path} alt="sd" />
         <div>
           <div>

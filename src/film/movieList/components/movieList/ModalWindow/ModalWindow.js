@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import { editPost } from "../../../redux/MovieListSlice";
 import { deletePost } from "../../../redux/MovieListSlice";
 import { EditWindow } from "./EditWindow";
+import "./editWindow.css";
 
 export const ModalWindow = ({ id }) => {
   const [changeEditWindow, setchangeEditWindow] = useState(false);
@@ -12,6 +13,7 @@ export const ModalWindow = ({ id }) => {
   const [valueUrl, setValueUrl] = useState("");
   const [valueOverview, setValueOverview] = useState("");
   const [valueRuntime, seValueRuntime] = useState("");
+  const [valueGenres, seValueGenres] = useState("");
   console.log("id", id);
   console.log("value", valueTitle);
   console.log("value", valueRelease);
@@ -30,7 +32,8 @@ export const ModalWindow = ({ id }) => {
       valueUrl,
       valueOverview,
       valueRuntime,
-      id
+      id,
+      valueGenres,
     };
     dispatch(editPost(paramDispatch));
   };
@@ -68,6 +71,8 @@ export const ModalWindow = ({ id }) => {
             valueRuntime={valueRuntime}
             seValueRuntime={seValueRuntime}
             onSubmit={onSubmit}
+            valueGenres={valueGenres}
+            seValueGenres={seValueGenres}
           />
         ) : null}{" "}
       </button>

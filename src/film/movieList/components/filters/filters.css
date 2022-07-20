@@ -1,6 +1,6 @@
-.container__filters{
+.container__filter{
     display: flex;
 }
-.btnAsyncComplit{
+.btn__async-complete{
     color:rgb(255, 0, 149);
 }

@@ -56,6 +56,7 @@ export const editPostFromServer = async (paramDispatch) => {
   const valueOverview = paramDispatch.valueOverview;
   const valueRuntime = +paramDispatch.valueRuntime;
   const id = paramDispatch.id;
+  const genres = paramDispatch.valueGenres;
   const requestOptions = {
     method: "PUT",
     headers: { "Content-Type": "application/json" },
@@ -66,11 +67,38 @@ export const editPostFromServer = async (paramDispatch) => {
       overview: `${valueOverview}`,
       runtime: valueRuntime,
       id: id,
+      genres: [genres],
     }),
   };
   debugger;
   const response = await fetch(`http://localhost:4000/movies`, requestOptions);
   const post = await response.json();
-  debugger
+  debugger;
+  return post;
+};
+
+export const addPostFromServer = async (paramDispatch) => {
+  const valueTitle = paramDispatch.valueTitle;
+  const valueRelease = paramDispatch.valueRelease;
+  const valueUrl = paramDispatch.valueUrl;
+  const valueOverview = paramDispatch.valueOverview;
+  const valueRuntime = +paramDispatch.valueRuntime;
+  const genres = paramDispatch.valueGenres;
+  const requestOptions = {
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      title: `${valueTitle}`,
+      release_date: `${valueRelease}`,
+      poster_path: `${valueUrl}`,
+      overview: `${valueOverview}`,
+      runtime: valueRuntime,
+      genres: [genres],
+    }),
+  };
+  debugger;
+  const response = await fetch(`http://localhost:4000/movies`, requestOptions);
+  const post = await response.json();
+  debugger;
   return post;
 };
