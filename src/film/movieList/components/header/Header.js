@@ -6,24 +6,16 @@ export function Header() {
   const [value, setValue] = useState("");
   const countMovies = useSelector((state) => state.movie.currentCountMovie);
   console.log(countMovies);
-  // debugger;
   const dispatch = useDispatch();
 
   const onSubmit = (event) => {
     event.preventDefault();
     setValue("");
     dispatch(movieSearch(value));
-
-// СПРОСИТЬ!!!!
-    // if(countMovies === 0) {
-    //   debugger
-    //   dispatch(notFoundMovie())
-    // }
   };
 
   return (
     <>
-      
         <div>
           <input
             type="text"

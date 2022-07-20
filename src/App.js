@@ -5,12 +5,12 @@ import {
   BrowserRouter as Router,
   Routes,
   Route,
-  Redirect,
 } from "react-router-dom";
 import {MovieInfo} from "./film/movieList/components/currentMovieInfo/MovieInfo"
-import {NotFound} from "./film/movieList/components/movieList/notFound/NotFound"
 
 import "./App.css";
+
+
 
 function App() {
   return (
@@ -21,7 +21,6 @@ function App() {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/movieInfo" element={<MovieInfo />} />
-            {/* <Route path="/notFound" element={<NotFound />} /> */}
           </Routes>
         </Router>
       </header>

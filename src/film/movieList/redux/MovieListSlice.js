@@ -5,22 +5,47 @@ import {
   getPostsFromServerSort,
   getPostsFromServerSearch,
   getPostFromServerById,
+  deletePostsFromServer,
+  editPostFromServer,
 } from "./GetMovieListAPI";
 
 const initialState = {
   posts: [],
-  loading: false,
+  loading: true,
   currentFilter: "",
   currentSort: "",
   currentCountMovie: 0,
   currentMovie: "",
-  notFoundMovie: { value: "MOVIE NOT FOUND" },
 };
 
 export const getPosts = createAsyncThunk("posts/getPosts", async () => {
   const posts = await getPostsFromServer();
   return posts;
 });
+
+export const deletePost = createAsyncThunk(
+  "posts/deletePost",
+  async (id, { dispatch, getState }) => {
+    await deletePostsFromServer(id);
+    const currentState = getState();
+    const currentFilter = currentState.movie.currentFilter;
+    console.log("state", currentFilter);
+    if (currentFilter === "") {
+      dispatch(getPosts());
+    } else {
+      dispatch(movieFilter(currentFilter));
+    }
+    return id;
+  }
+);
+
+export const editPost = createAsyncThunk(
+  "posts/editPost",
+  async (paramDispatch) => {
+    const searchMovie = await editPostFromServer(paramDispatch);
+    return searchMovie;
+  }
+);
 
 export const movieFilter = createAsyncThunk(
   "posts/movieFilter",
@@ -68,15 +93,6 @@ export const movieSlice = createSlice({
     setSort: (state, action) => {
       state.currentSort = action.payload;
     },
-    deleteMovie: (state, action) => {
-      const index = state.posts.findIndex((item) => item.id === action.payload);
-      console.log(index);
-      state.posts.splice(index, 1);
-    },
-    notFoundMovie: (state, action) => {
-      state.posts = initialState.notFoundMovie
-      debugger
-    },
   },
   extraReducers: {
     [getPosts.pending]: (state) => {
@@ -90,25 +106,48 @@ export const movieSlice = createSlice({
     [getPosts.rejected]: (state) => {
       state.loading = false;
     },
+    [movieFilter.pending]: (state) => {
+      state.loading = true;
+    },
     [movieFilter.fulfilled]: (state, action) => {
       state.loading = false;
       state.posts = action.payload;
       state.currentCountMovie = action.payload.length;
+    },
+    [movieSort.pending]: (state) => {
+      state.loading = true;
     },
     [movieSort.fulfilled]: (state, action) => {
       state.loading = false;
       state.posts = action.payload;
       state.currentCountMovie = action.payload.length;
     },
+    [movieSearch.pending]: (state) => {
+      state.loading = true;
+    },
     [movieSearch.fulfilled]: (state, action) => {
       state.loading = false;
       state.posts = action.payload;
       state.currentCountMovie = action.payload.length;
     },
+    [currentMovie.pending]: (state) => {
+      state.loading = true;
+    },
     [currentMovie.fulfilled]: (state, action) => {
       state.loading = false;
       state.currentMovie = action.payload;
       state.currentCountMovie = action.payload.length;
+    },
+    [deletePost.fulfilled]: (state, action) => {
+      const index = state.posts.findIndex((item) => item.id === action.payload);
+      state.posts.splice(index, 1);
+      state.currentCountMovie = action.payload.length;
+    },
+    [editPost.fulfilled]: (state, action) => {
+      const index = state.posts.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      state.posts[index] = action.payload;
     },
   },
 });
