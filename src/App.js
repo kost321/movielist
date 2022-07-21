@@ -1,18 +1,26 @@
 import React from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { PaginationControlled } from "./film/movieList/components/pagination/PaginationControlled";
+import { HomePage } from "./film/movieList/components/movieList/MovieLsit";
+import { Header } from "./film/movieList/components/header/Header";
+import { MovieInfo } from "./film/movieList/components/currentMovieInfo/MovieInfo";
 
-import { Counter } from "./features/counter/Counter";
 import "./App.css";
-import { FieldInput } from "./features/input/FieldInput";
-import { AddTodoForm } from "./features/todolist/AddTodoForm";
+
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <Counter />
-        <FieldInput />
-        <AddTodoForm />
+        <Header />
       </header>
+      <Router>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          <Route path="/movieInfo" element={<MovieInfo />} />
+        </Routes>
+      </Router>
+      <PaginationControlled />
     </div>
   );
 }

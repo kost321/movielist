@@ -1,4 +1,4 @@
-import React from "react";
+import React,{ useState,useEffect, useRef } from "react";
 import { useDispatch } from "react-redux";
 import {
   toogleCompleted,
@@ -6,9 +6,7 @@ import {
   changeTodo,
   addLetterAsync,
 } from "./TodoSclice";
-import { useState } from "react";
 import "./todolist.css";
-import { useEffect, useRef } from "react";
 
 export function TodoItem({ id, title, completed }) {
   const [editDiv, setEditDiv] = useState(true);
