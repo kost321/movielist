@@ -10,11 +10,13 @@ import {
   addPostFromServer,
 } from "./GetMovieListAPI";
 
+
 const initialState = {
   posts: [],
   loading: true,
   currentFilter: "",
   currentSort: "",
+  // Спросить про posts.length
   currentCountMovie: 0,
   currentMovie: "",
 };
@@ -30,7 +32,7 @@ export const deletePost = createAsyncThunk(
     await deletePostsFromServer(id);
     const currentState = getState();
     const currentFilter = currentState.movie.currentFilter;
-    console.log("state", currentFilter);
+
     if (currentFilter === "") {
       dispatch(getPosts());
     } else {

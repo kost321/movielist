@@ -4,3 +4,11 @@
 .btn__async-complete{
     color:rgb(255, 0, 149);
 }
+.block__sort{
+    display: flex;
+
+}
+.icon-sort{
+    height: 20px;
+    width: 20px;
+}

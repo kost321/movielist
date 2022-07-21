@@ -7,6 +7,7 @@ import { Movie } from "./movie/Movie";
 
 import "./movielist.css";
 
+
 export const HomePage = () => {
   const { posts } = useSelector((state) => state.movie);
   const loadFilms = useSelector((state) => state.movie.loading);

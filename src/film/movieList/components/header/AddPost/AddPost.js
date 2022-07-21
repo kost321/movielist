@@ -1,5 +1,7 @@
 import React from "react";
-import "./header.css";
+
+import "./addpost.css";
+
 
 export const AddPost = ({
   valueTitle,

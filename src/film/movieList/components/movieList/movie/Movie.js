@@ -1,24 +1,23 @@
 import React, { useState } from "react";
 import { useDispatch } from "react-redux";
-import { currentMovie } from "../../../redux/MovieListSlice";
 import { useNavigate } from "react-router-dom";
+import { currentMovie } from "../../../redux/MovieListSlice";
 import { ModalWindow } from "../ModalWindow/ModalWindow";
 
+
 export const Movie = ({ id, title, img, genres, date }) => {
-  console.log("key", id);
+
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const [modalWindow, setModalWidnow] = useState(false);
+  const [modalWindow, setModalWindow] = useState(false);
 
   function handleClick(event, key) {
-    console.log("key", key);
     dispatch(currentMovie(key));
     navigate("/movieInfo");
   }
 
   function changeStateModalWindow() {
-    setModalWidnow(!modalWindow);
-    console.log(modalWindow);
+    setModalWindow(!modalWindow);
   }
 
   return (

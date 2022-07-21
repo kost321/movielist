@@ -3,7 +3,9 @@ import { useDispatch } from "react-redux";
 import { editPost } from "../../../redux/MovieListSlice";
 import { deletePost } from "../../../redux/MovieListSlice";
 import { EditWindow } from "./EditWindow";
+
 import "./editWindow.css";
+
 
 export const ModalWindow = ({ id }) => {
   const [changeEditWindow, setchangeEditWindow] = useState(false);
@@ -14,14 +16,8 @@ export const ModalWindow = ({ id }) => {
   const [valueOverview, setValueOverview] = useState("");
   const [valueRuntime, seValueRuntime] = useState("");
   const [valueGenres, seValueGenres] = useState("");
-  console.log("id", id);
-  console.log("value", valueTitle);
-  console.log("value", valueRelease);
-  console.log("value", valueUrl);
-  console.log("value", valueOverview);
-  console.log("value", valueRuntime);
+
   function handleClickDelete(event, key) {
-    console.log("key", key);
     dispatch(deletePost(key));
   }
   const onSubmit = () => {

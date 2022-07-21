@@ -1,6 +1,7 @@
 import React from "react";
-import "./editWindow.css";
 import { useSelector } from "react-redux";
+
+import "./editWindow.css";
 
 export const EditWindow = ({
   id,
@@ -20,7 +21,7 @@ export const EditWindow = ({
 }) => {
   const movieState = useSelector((state) => state.movie.posts);
   let currentMovieState = movieState.find((item) => item.id === id);
-  console.log(movieState);
+
   return (
     <div className="container__input">
       <div className="block__input">

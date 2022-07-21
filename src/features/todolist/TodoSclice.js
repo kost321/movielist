@@ -7,7 +7,6 @@ export const addLetterAsync = createAsyncThunk(
   "todos/fetchAddLetter",
   async (id) => {
     const response = await fetchAddLetter();
-    console.log("respons", response);
     return {
       letter: response,
       id: id,
@@ -43,14 +42,12 @@ export const counterSlice = createSlice({
   extraReducers: (builder) => {
     builder
       .addCase(addLetterAsync.pending, () => {
-        console.log("load");
       })
       .addCase(addLetterAsync.fulfilled, (state, action) => {
         const todo = state.find((todo) => todo.id === action.payload.id);
         todo.title += action.payload.letter;
       })
       .addCase(addLetterAsync.rejected, (error) => {
-        console.log("error", error);
       });
   },
 });
